@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FGC9 Coloring Book</title>
 <style>
     *,
 *::before,
@@ -233,10 +233,8 @@ function getColorFormData() {
 
 function makePermalink() {
     var data = getColorFormData();
-    var encodedData = window.btoa(JSON.stringify(data));
-    var baseUrl = "https://moutainman.github.io/3d_coloring/";
-    window.history.pushState(data,{"pageTitle":("FGC9 "+new Date().getTime())},"", (baseUrl+'?design='+encodedData));
-    // window.atob();
+    var str = window.btoa(JSON.stringify(data));
+    window.history.pushState(data,("FGC9 "+new Date().getTime()),('https://moutainman.github.io/3d_coloring/?design='+str));
 }
 
 function logKey(e) {
@@ -263,6 +261,12 @@ function setDefaults(firstLoad) {
         var params = QueryStringToJSON();
         if(params.hasOwnProperty('design')) {
             console.log('params.design',params.design);
+            try {
+                var data = JSON.parse(window.atob(params.design));
+                updateColors(data);
+            } catch(e) {
+
+            }
         }
     } else {
         updateColors(theme);
