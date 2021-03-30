@@ -263,8 +263,10 @@ function setDefaults(firstLoad) {
                 var data = JSON.parse(window.atob(params.design));
                 updateColors(data);
             } catch(e) {
-
+                console.log(e);
             }
+        } else {
+            updateColors(theme);
         }
     } else {
         updateColors(theme);
