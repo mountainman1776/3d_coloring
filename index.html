@@ -65,18 +65,30 @@ select {
 select option {
     font-size: 0.75em;
 }
-#clear-colors { 
+#nav-buttons {
     position: absolute;
     right: 20px;
     top: 13px;
+}
+#nav-buttons button {
     font-size: .75em;
-    background-color: #8e8e8e;
     color: white;
     font-weight: 700;
     font-variant: all-petite-caps;
+
+}
+#clear-colors { 
+
+    background-color: #8e8e8e;
 }
 #clear-colors:hover {
+    background-color: #dfdede;
+}
+#save-img { 
     background-color: #8e8e8e;
+}
+#save-img:hover {
+    background-color: #dfdede;
 }
 </style>
 </head>
@@ -88,31 +100,38 @@ select option {
             <option value="jstark">JStark</option>
             <option value="ctrlpew">CTRL+PEW</option>
         </select>
-        <button id="clear-colors">Clear</button>
+        <div id="nav-buttons">
+            <button id="make-permalink">Make Permalink</button>
+            <button id="save-img">Save Image</button>
+            <button id="clear-colors">Clear</button>
+        </div>
     </div>
     <div id="control_panel">
-        <div><input type="color" id="Barrel_Assembly" name="Barrel_Assembly" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Barrel</div>
-        <div><input type="color" id="FGC-9_Barrel_Retainer_Oversized_Shaft_Collar_Pocket" name="FGC-9_Barrel_Retainer_Oversized_Shaft_Collar_Pocket" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Barrel Retainer</div>
-        <div><input type="color" id="Bolt_Carrier_fgc9_mki_v1_Body1_Bolt_Carrier" name="Bolt_Carrier_fgc9_mki_v1_Body1_Bolt_Carrier" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Bolt Carrier</div>
-        <div><input type="color" id="FGC-9_Buffer_Tube" name="FGC-9_Buffer_Tube" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Buffer Tube</div>
-        <div><input type="color" id="FGC-9_Charging_Handle" name="FGC-9_Charging_Handle" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Charging Handle</div>
-        <div><input type="color" id="Ejector_fgc9_mki_v1_Body1_Ejector" name="Ejector_fgc9_mki_v1_Body1_Ejector" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Ejector</div>
-        <div><input type="color" id="Ejector_Pivot_fgc9_mki_v1_Body1_Ejector_Pivot" name="Ejector_Pivot_fgc9_mki_v1_Body1_Ejector_Pivot" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Ejector Pivot</div>
-        <div><input type="color" id="Fire_Selector_Assemby" name="Fire_Selector_Assemby" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Fire Selector</div>
-        <div><input type="color" id="FGC-9_Lower_Receiver" name="FGC-9_Lower_Receiver" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Lower Receiver</div>
-        <div><input type="color" id="Magazine_fgc9_mki_v1_Magazine_Body_1_Body1_Magazine_Body" name="Magazine_fgc9_mki_v1_Magazine_Body_1_Body1_Magazine_Body" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Magazine</div>
-        <div><input type="color" id="Magazine_Catch_Assembly_fgc9_mki_v1_Magazine_Catch_Bar_1_Body1_" name="Magazine_Catch_Assembly_fgc9_mki_v1_Magazine_Catch_Bar_1_Body1_" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Magazine Catch Bar</div>
-        <div><input type="color" id="FGC-9_Pistol_Grip" name="FGC-9_Pistol_Grip" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Pistol Grip</div>
-        <div><input type="color" id="FGC-9_Upper_Receiver" name="FGC-9_Upper_Receiver" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Upper Receiver</div>
-        <div><input type="color" id="FGC-9_Upper_Receiver_Rail" name="FGC-9_Upper_Receiver_Rail" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Upper Receiver Rail</div>
-        <div><input type="color" id="FGC-9_Stock" name="FGC-9_Stock" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Stock</div>
-        <div><input type="color" id="Trigger" name="Trigger" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Trigger</div>
-        <hr/>
-        <div><input type="color" id="Background" name="Background" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Background</div>
+        <form id="model-colors">
+            <div><input type="color" id="Barrel_Assembly" name="Barrel_Assembly" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Barrel</div>
+            <div><input type="color" id="FGC-9_Barrel_Retainer_Oversized_Shaft_Collar_Pocket" name="FGC-9_Barrel_Retainer_Oversized_Shaft_Collar_Pocket" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Barrel Retainer</div>
+            <div><input type="color" id="Bolt_Carrier_fgc9_mki_v1_Body1_Bolt_Carrier" name="Bolt_Carrier_fgc9_mki_v1_Body1_Bolt_Carrier" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Bolt Carrier</div>
+            <div><input type="color" id="FGC-9_Buffer_Tube" name="FGC-9_Buffer_Tube" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Buffer Tube</div>
+            <div><input type="color" id="FGC-9_Charging_Handle" name="FGC-9_Charging_Handle" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Charging Handle</div>
+            <div><input type="color" id="Ejector_fgc9_mki_v1_Body1_Ejector" name="Ejector_fgc9_mki_v1_Body1_Ejector" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Ejector</div>
+            <div><input type="color" id="Ejector_Pivot_fgc9_mki_v1_Body1_Ejector_Pivot" name="Ejector_Pivot_fgc9_mki_v1_Body1_Ejector_Pivot" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Ejector Pivot</div>
+            <div><input type="color" id="Fire_Selector_Assemby" name="Fire_Selector_Assemby" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Fire Selector</div>
+            <div><input type="color" id="FGC-9_Lower_Receiver" name="FGC-9_Lower_Receiver" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Lower Receiver</div>
+            <div><input type="color" id="Magazine_fgc9_mki_v1_Magazine_Body_1_Body1_Magazine_Body" name="Magazine_fgc9_mki_v1_Magazine_Body_1_Body1_Magazine_Body" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Magazine</div>
+            <div><input type="color" id="Magazine_Catch_Assembly_fgc9_mki_v1_Magazine_Catch_Bar_1_Body1_" name="Magazine_Catch_Assembly_fgc9_mki_v1_Magazine_Catch_Bar_1_Body1_" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Magazine Catch Bar</div>
+            <div><input type="color" id="FGC-9_Pistol_Grip" name="FGC-9_Pistol_Grip" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Pistol Grip</div>
+            <div><input type="color" id="FGC-9_Upper_Receiver" name="FGC-9_Upper_Receiver" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Upper Receiver</div>
+            <div><input type="color" id="FGC-9_Upper_Receiver_Rail" name="FGC-9_Upper_Receiver_Rail" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Upper Receiver Rail</div>
+            <div><input type="color" id="FGC-9_Stock" name="FGC-9_Stock" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Stock</div>
+            <div><input type="color" id="Trigger" name="Trigger" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Trigger</div>
+            <hr/>
+            <div><input type="color" id="Background" name="Background" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Background</div>
+        </form>
     </div>
 <script>
-var THREE, model, scene, texture, mats, amLight;
+var THREE, renderer, model, scene, texture, mats;
 var parts = [];
+var lights = [];
 
 var themes = {
     backup: {
@@ -207,11 +226,47 @@ var themes = {
     }
 };
 
-function setDefaults() {
+function getColorFormData() {
+    var form = document.getElementById('model-colors');
+    return Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+}
+
+function makePermalink() {
+    var data = getColorFormData();
+    var encodedData = window.btoa(JSON.stringify(data));
+    var baseUrl = "https://moutainman.github.io/3d_coloring/";
+    window.history.pushState(data,{"pageTitle":("FGC9 "+new Date().getTime())},"", (baseUrl+'?design='+encodedData));
+    // window.atob();
+}
+
+function logKey(e) {
+    var steps = 2;
+    if(e.code=="ArrowUp") {
+        // camera.position.z = camera.position.z+steps;
+        camera.position.y = camera.position.y+steps;
+    } else if(e.code=="ArrowDown") {
+        // camera.position.z = camera.position.z-steps;
+        camera.position.y = camera.position.y-steps;
+    } else if(e.code=="ArrowLeft") {
+        camera.position.x = camera.position.x-steps;
+    } else if(e.code=="ArrowRight") {
+        camera.position.x = camera.position.x+steps;
+    }
+  console.log(` ${e.code}`);
+}
+
+function setDefaults(firstLoad) {
     var themeSelectorElm = document.getElementById('theme-selector');
     console.log('themeSelectorElm.value',themeSelectorElm.value);
     var theme = themes[themeSelectorElm.value];
-    updateColors(theme);
+    if(firstLoad) {
+        var params = QueryStringToJSON();
+        if(params.hasOwnProperty('design')) {
+            console.log('params.design',params.design);
+        }
+    } else {
+        updateColors(theme);
+    }
 }
 
 function updateColors(theme) {
@@ -244,7 +299,17 @@ function updateElementColor(name,color) {
     // parts[0].material = new THREE.MeshStandardMaterial({color: 0xff4400});
     var elm = findElementByName(name);
     if(elm) {
-        const material = new THREE.MeshPhysicalMaterial({color: color,metalness: 0.3,flatShading:true});
+        const material = new THREE.MeshPhysicalMaterial({color: color});
+        // const material = new THREE.MeshPhysicalMaterial();
+        // material.color = color;
+        material.clearcoat = 0.5;
+        material.metalness = 0.1;
+        material.roughness = .34;
+        material.reflectivity = 0.08;
+        material.transmission = 0.1;
+        material.clearcoatRoughness = 0.7;
+        material.flatShading = true;
+        material.ior = .2;
         elm.material = material;
         // elm.material = materialnew THREE.MeshStandardMaterial({color: color});
     }
@@ -260,6 +325,47 @@ function findElementByName(name) {
     };
     return null;
 }
+
+function saveAsImage() {
+        var imgData, imgNode;
+
+        try {
+            var strMime = "image/jpeg";
+            var strDownloadMime = "image/octet-stream";
+            imgData = renderer.domElement.toDataURL(strMime);
+            saveFile(imgData.replace(strMime, strDownloadMime), "fgc9_designs.jpg");
+
+        } catch (e) {
+            console.log(e);
+            return;
+        }
+
+    }
+
+    var saveFile = function (strData, filename) {
+        var link = document.createElement('a');
+        if (typeof link.download === 'string') {
+            document.body.appendChild(link); //Firefox requires the link to be in the body
+            link.download = filename;
+            link.href = strData;
+            link.click();
+            document.body.removeChild(link); //remove the link when done
+        } else {
+            location.replace(uri);
+        }
+    }
+
+    function QueryStringToJSON() {            
+        var pairs = location.search.slice(1).split('&');
+        
+        var result = {};
+        pairs.forEach(function(pair) {
+            pair = pair.split('=');
+            result[pair[0]] = decodeURIComponent(pair[1] || '');
+        });
+
+        return JSON.parse(JSON.stringify(result));
+    }
 </script>
 <script type="module">
 import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
@@ -276,7 +382,8 @@ function init() {
     window.THREE = THREE;
     const BACKGROUND_COLOR = 0xf1f1f1;
     // renderer
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
+    window.renderer = renderer;
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.setPixelRatio( window.devicePixelRatio );
     document.body.appendChild( renderer.domElement );
@@ -290,7 +397,8 @@ function init() {
     
     // camera
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.set( 160, 120, 100 );
+    camera.position.set( 260, 20, 5 );
+    window.camera = camera;
 
     // controls
     controls = new OrbitControls( camera, renderer.domElement );
@@ -299,21 +407,28 @@ function init() {
     // ambient
     var amLight = new THREE.AmbientLight( 0xFFFFFF, .5 );
     // window.amLight = amLight;
+    // amLight.castShadow = true;
     scene.add(amLight);
+    lights.push(amLight);
     
     // light
     var light = new THREE.DirectionalLight( 0xffffff, 0.5 );
     light.position.set( 20,20, 0 );
+    light.castShadow = true;
     scene.add( light );
+    lights.push(light);
 
     var light1 = new THREE.DirectionalLight( 0xffffff, 0.5 );
     light1.position.set( -20,-20, 0 );
+    light1.castShadow = true;
     scene.add( light1 );
+    lights.push(light1);
 
     
     const light2 = new THREE.DirectionalLight( 0xc1c1c1, 0.5 );
     light2.castShadow = true;
     scene.add( light2 );
+    lights.push(light2);
 
     
 let model;
@@ -328,9 +443,12 @@ loader.load(modelName, function(gltf){
     model = gltf.scene;
     model.scale.set(0.5,0.5,0.5);
     model.position.y = 0;
-    model.position.x = 0;
-    model.position.z = 0;
-    model.quaternion.set(0,0,0,0);
+    model.position.x = -70;
+    model.castShadow = true;
+    // model.position.z = -100;
+    // model.quaternion.set(0,0,0,0);
+    // model.rotation.x = -0.14;
+    // model.rotation.y = -3.25;
     window.model = model;
 
 gltf.scene.traverse( ( object ) => {
@@ -345,8 +463,8 @@ if ( object.isMesh ) {
 }
 } );
   scene.add(gltf.scene);
-  setDefaults();
-  //animate();
+  setDefaults(true);
+  animate();
 });
 
     
@@ -359,6 +477,13 @@ function animate() {
 }
     </script>
     <script>
+        document.addEventListener('keydown', logKey);
+        document.getElementById('make-permalink').addEventListener('click', function (event) {
+            makePermalink();
+        });
+        document.getElementById('save-img').addEventListener('click', function (event) {
+            saveAsImage();
+        });
         document.getElementById('clear-colors').addEventListener('click', function (event) {
             updateColors(themes.clear);
         });
