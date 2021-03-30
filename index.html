@@ -247,8 +247,9 @@ function logKey(e) {
         camera.position.x = camera.position.x-steps;
     } else if(e.code=="ArrowRight") {
         camera.position.x = camera.position.x+steps;
+    } else {
+        console.log(` ${e.code}`);
     }
-  console.log(` ${e.code}`);
 }
 
 function setDefaults(firstLoad) {
@@ -266,7 +267,7 @@ function setDefaults(firstLoad) {
                 console.log(e);
             }
         } else {
-            
+
             updateColors(theme);
         }
     } else {
@@ -457,7 +458,7 @@ loader.load(modelName, function(gltf){
     window.model = model;
 
 gltf.scene.traverse( ( object ) => {
-    console.log(object);
+    // console.log(object);
 if ( object.isMesh ) {
     object.material.color.set( 0xffffff * Math.random() );
     console.log(object.name);
@@ -465,6 +466,7 @@ if ( object.isMesh ) {
     object.material = new THREE.MeshStandardMaterial({color: 0xffffff});
     // object.material = texMat;
     parts.push(object);
+    // writeText("FGC9");
 }
 } );
   scene.add(gltf.scene);
@@ -474,6 +476,7 @@ if ( object.isMesh ) {
 
     
 }
+
 
 function animate() {
     requestAnimationFrame( animate );
