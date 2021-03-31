@@ -401,7 +401,6 @@ import { DRACOLoader } from './DRACOLoader.js'
 var mesh, renderer, scene, camera, controls, model;
 
 init();
-animate();
 
 function init() {
     window.THREE = THREE;
@@ -515,19 +514,29 @@ loader.load(modelName, function(gltf){
     } );
   scene.add(gltf.scene);
   setDefaults(true);
-//   animate();
+  animate();
 });
+
+function animate() {
+    requestAnimationFrame( animate );
+    if(controls){ 
+        controls.update();
+    }
+    if(renderer) {
+        renderer.render( scene, camera );
+    }
+    if(model) {
+        if(model.rotation.y<0.5) {
+            model.rotation.y += 0.01;
+        }
+    }
+}
 
     
 }
 
 
-function animate() {
-    if (model) {model.rotation.x += 1.01};
-    requestAnimationFrame( animate );
-    controls.update();
-    renderer.render( scene, camera );
-}
+
     </script>
     <script>
         document.addEventListener('keydown', logKey);
