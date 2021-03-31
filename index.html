@@ -123,7 +123,8 @@ select option {
             <div><input type="color" id="FGC-9_Stock" name="FGC-9_Stock" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Stock</div>
             <div><input type="color" id="Trigger" name="Trigger" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Trigger</div>
             <hr/>
-            <div><input type="color" id="Background" name="Background" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Background</div>
+            <div><input type="color" id="Background" name="Background" autocomplete="off" onchange="pickedColor(this)" value="#b7b7b7" >Background</div>
+            <div><input type="color" id="Floor" name="Floor" autocomplete="off" onchange="pickedColor(this)" value="#d9d9d9" >Floor</div>
         </form>
     </div>
 <script>
@@ -296,7 +297,10 @@ function pickedColor(elm) {
     // console.log(elm);
     if(elm.name=="Background") {
         scene.background = new THREE.Color(elm.value);
+    }else if(elm.name=="Floor") {
+        scene.background = new THREE.Color(elm.value);
     } else {
+
         updateElementColor(elm.name,elm.value)
     }
 }
@@ -319,6 +323,21 @@ function updateElementColor(name,color) {
         elm.material = material;
         // elm.material = materialnew THREE.MeshStandardMaterial({color: color});
     }
+}
+
+function findSceneObjectByName(name) {
+    for(var scn in scene.children) {
+        var sceneObj = scene.children[scn];
+        if(sceneObj.type=='Group') {
+            for(var grp in sceneObj.children) {
+                var sceneGroup = sceneObj.children[grp];
+                if(name==sceneGroup.name) {
+                    return sceneGroup;
+                }
+            }
+        }
+    }
+    return null;
 }
 
 function findElementByName(name) {
@@ -400,7 +419,17 @@ function init() {
 
     scene.background = new THREE.Color(BACKGROUND_COLOR );
     // scene.fog = new THREE.Fog(BACKGROUND_COLOR, 20, 100);
-    
+
+    //scene floor
+    var floorMaterial = new THREE.MeshBasicMaterial( { color: '#d9d9d9', side: THREE.DoubleSide } );
+    var floorGeometry = new THREE.PlaneGeometry(300, 300, 1, 1);
+    let floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    // floor.position.y = -0.5;
+    floor.position.y = -100;
+    floor.rotation.x = Math.PI / 2;
+    floor.name = "Floor";
+    scene.add(floor);
+
     // camera
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
     camera.position.set( 260, 20, 5 );
@@ -439,7 +468,7 @@ function init() {
     
 let model;
 let loader = new GLTFLoader();
-let modelName = "fgc9_3d_model_v5-processed.gltf";
+let modelName = "fgc9_3d_model_v6.gltf";
 
 loader.setDRACOLoader( new DRACOLoader() );
 
@@ -449,7 +478,9 @@ loader.load(modelName, function(gltf){
     model = gltf.scene;
     model.scale.set(0.5,0.5,0.5);
     model.position.y = 0;
-    model.position.x = -70;
+    model.position.x = -150;
+    model.position.z = 0;
+    // model.position.x = -70;
     model.castShadow = true;
     // model.position.z = -100;
     // model.quaternion.set(0,0,0,0);
