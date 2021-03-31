@@ -106,22 +106,6 @@ select option {
     </div>
     <div id="control_panel">
         <form id="model-colors">
-            <div><input type="color" id="Barrel_Assembly" name="Barrel_Assembly" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Barrel</div>
-            <div><input type="color" id="FGC-9_Barrel_Retainer_Oversized_Shaft_Collar_Pocket" name="FGC-9_Barrel_Retainer_Oversized_Shaft_Collar_Pocket" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Barrel Retainer</div>
-            <div><input type="color" id="Bolt_Carrier_fgc9_mki_v1_Body1_Bolt_Carrier" name="Bolt_Carrier_fgc9_mki_v1_Body1_Bolt_Carrier" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Bolt Carrier</div>
-            <div><input type="color" id="FGC-9_Buffer_Tube" name="FGC-9_Buffer_Tube" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Buffer Tube</div>
-            <div><input type="color" id="FGC-9_Charging_Handle" name="FGC-9_Charging_Handle" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Charging Handle</div>
-            <div><input type="color" id="Ejector_fgc9_mki_v1_Body1_Ejector" name="Ejector_fgc9_mki_v1_Body1_Ejector" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Ejector</div>
-            <div><input type="color" id="Ejector_Pivot_fgc9_mki_v1_Body1_Ejector_Pivot" name="Ejector_Pivot_fgc9_mki_v1_Body1_Ejector_Pivot" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Ejector Pivot</div>
-            <div><input type="color" id="Fire_Selector_Assemby" name="Fire_Selector_Assemby" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Fire Selector</div>
-            <div><input type="color" id="FGC-9_Lower_Receiver" name="FGC-9_Lower_Receiver" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Lower Receiver</div>
-            <div><input type="color" id="Magazine_fgc9_mki_v1_Magazine_Body_1_Body1_Magazine_Body" name="Magazine_fgc9_mki_v1_Magazine_Body_1_Body1_Magazine_Body" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Magazine</div>
-            <div><input type="color" id="Magazine_Catch_Assembly_fgc9_mki_v1_Magazine_Catch_Bar_1_Body1_" name="Magazine_Catch_Assembly_fgc9_mki_v1_Magazine_Catch_Bar_1_Body1_" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Magazine Catch Bar</div>
-            <div><input type="color" id="FGC-9_Pistol_Grip" name="FGC-9_Pistol_Grip" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Pistol Grip</div>
-            <div><input type="color" id="FGC-9_Upper_Receiver" name="FGC-9_Upper_Receiver" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Upper Receiver</div>
-            <div><input type="color" id="FGC-9_Upper_Receiver_Rail" name="FGC-9_Upper_Receiver_Rail" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Upper Receiver Rail</div>
-            <div><input type="color" id="FGC-9_Stock" name="FGC-9_Stock" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Stock</div>
-            <div><input type="color" id="Trigger" name="Trigger" autocomplete="off" onchange="pickedColor(this)" value="#FFFFFF" >Trigger</div>
             <hr/>
             <div><input type="color" id="Background" name="Background" autocomplete="off" onchange="pickedColor(this)" value="#b7b7b7" >Background</div>
             <div style="display:none;"><input type="color" id="Floor" name="Floor" autocomplete="off" onchange="pickedColor(this)" value="#d9d9d9" >Floor</div>
@@ -225,6 +209,22 @@ var themes = {
     }
 };
 
+function buildColorPicker(name,defaultColor) {
+    var panelElm = document.getElementById('control_panel');
+    var divElm = document.createElement('div');
+    var inptElm = document.createElement('input');
+    inptElm.setAttribute("id", name);
+    inptElm.setAttribute("name", name);
+    inptElm.setAttribute("type", "color");
+    inptElm.setAttribute("onchange", "pickedColor(this)");
+    inptElm.setAttribute("value", defaultColor);
+    divElm.appendChild(inptElm);
+    var spanElm = document.createElement("span");
+    spanElm.textContent = name.replace(/_/g,' ');
+    divElm.appendChild(spanElm);
+    panelElm.prepend(divElm);
+}
+
 function getColorFormData() {
     var form = document.getElementById('model-colors');
     return Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
@@ -233,7 +233,7 @@ function getColorFormData() {
 function makePermalink() {
     var data = getColorFormData();
     var str = window.btoa(JSON.stringify(data));
-    window.history.pushState(data,("FGC9 "+new Date().getTime()),('https://moutainman.github.io/3d_coloring/?design='+str));
+    window.history.pushState(data,("FGC9 "+new Date().getTime()),('?design='+str));
 }
 
 function logKey(e) {
@@ -274,6 +274,13 @@ function setDefaults(firstLoad) {
     } else {
         updateColors(theme);
     }
+}
+
+function clearColors() {
+    parts.forEach(function(part) {
+        updateElementColor(part.name,0xFFFFFF);
+        document.getElementById(part.name).value = "#FFFFFF";
+    })
 }
 
 function updateColors(theme) {
@@ -481,7 +488,7 @@ function init() {
     
 let model;
 let loader = new GLTFLoader();
-let modelName = "fgc9_3d_model_v6.gltf";
+let modelName = "fgc9_3d_model_v7.gltf";
 
 loader.setDRACOLoader( new DRACOLoader() );
 
@@ -503,13 +510,12 @@ loader.load(modelName, function(gltf){
     gltf.scene.traverse( ( object ) => {
         // console.log(object);
         if ( object.isMesh ) {
-            object.material.color.set( 0xffffff * Math.random() );
+            // object.material.color.set( 0xffffff * Math.random() );
             console.log(object.name);
             // object.material = new THREE.MeshStandardMaterial({color: 0xffffff * Math.random()});
             object.material = new THREE.MeshStandardMaterial({color: 0xffffff});
-            // object.material = texMat;
             parts.push(object);
-            // writeText("FGC9");
+            buildColorPicker(object.name,"#ffffff");
         }
     } );
   scene.add(gltf.scene);
@@ -547,7 +553,7 @@ function animate() {
             saveAsImage();
         });
         document.getElementById('clear-colors').addEventListener('click', function (event) {
-            updateColors(themes.clear);
+            clearColors();
         });
         document.getElementById('theme-selector').addEventListener('change', function (event) {
             setDefaults();

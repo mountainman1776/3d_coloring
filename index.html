@@ -233,7 +233,7 @@ function getColorFormData() {
 function makePermalink() {
     var data = getColorFormData();
     var str = window.btoa(JSON.stringify(data));
-    window.history.pushState(data,("FGC9 "+new Date().getTime()),('?design='+str));
+    window.history.pushState(data,("FGC9 "+new Date().getTime()),('https://moutainman.github.io/3d_coloring/?design='+str));
 }
 
 function logKey(e) {
