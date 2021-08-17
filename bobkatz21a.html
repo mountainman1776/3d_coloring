@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FGC9 MKII Coloring Book</title>
+    <title>BobKatz 21A by <span>gerald.katz</span></title>
 <style>
     *,
 *::before,
@@ -83,6 +83,7 @@ select option {
 #clear-colors,
 #save-img,
 #make-permalink { 
+    display:none;
     background-color: #8e8e8e;
 }
 #clear-colors:hover
@@ -95,7 +96,7 @@ select option {
 </head>
 <body>
     <div id="header">
-        FGC9 MKII(First Good Coloringbook)
+        BobKatz 21A
         <select id="theme-selector" autocomplete="off">
             <option value="defaults">Default</option>
             <!-- <option value="ctrlpew">CTRL+PEW</option> -->
@@ -470,7 +471,7 @@ function init() {
     
 let model;
 let loader = new GLTFLoader();
-let modelName = "fgc9_mkii_model_v3.gltf";
+let modelName = "21a_sample_001.glb";
 
 loader.setDRACOLoader( new DRACOLoader() );
 
