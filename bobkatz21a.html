@@ -230,16 +230,17 @@ function setDefaults(firstLoad) {
         if(params.hasOwnProperty('design')) {
             console.log('params.design',params.design);
             try {
-                // var data = JSON.parse(window.atob(params.design));
-                // updateColors(data);
+                var data = JSON.parse(window.atob(params.design));
+                updateColors(data);
             } catch(e) {
                 console.log(e);
             }
         } else {
-            // updateColors(theme);
+
+            updateColors(theme);
         }
     } else {
-        // updateColors(theme);
+        updateColors(theme);
     }
 }
 
