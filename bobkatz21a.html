@@ -461,8 +461,8 @@ loader.setDRACOLoader( new DRACOLoader() );
 
 loader.load(modelName, function(gltf){
     model = gltf.scene;
-    model.scale.set(0.5,0.5,0.5);
-    model.position.y = -50;
+    // model.scale.set(0.5,0.5,0.5);
+    // model.position.y = -50;
     model.position.x = 0;
     model.position.z = 0;
     model.castShadow = true;
@@ -474,15 +474,15 @@ loader.load(modelName, function(gltf){
 
     gltf.scene.traverse( ( object ) => {
         // console.log(object);
-        if ( object.isMesh ) {
-            object.material.color.set( 0xffffff * Math.random() );
-            console.log(object.name);
-            // object.material = new THREE.MeshStandardMaterial({color: 0xffffff * Math.random()});
-            object.material = new THREE.MeshStandardMaterial({color: 0xffffff});
-            // object.material = texMat;
-            parts.push(object);
-            // writeText("FGC9");
-        }
+        // if ( object.isMesh ) {
+        //     object.material.color.set( 0xffffff * Math.random() );
+        //     console.log(object.name);
+        //     // object.material = new THREE.MeshStandardMaterial({color: 0xffffff * Math.random()});
+        //     object.material = new THREE.MeshStandardMaterial({color: 0xffffff});
+        //     // object.material = texMat;
+        //     parts.push(object);
+        //     // writeText("FGC9");
+        // }
     } );
 
 //     var mixer = new THREE.AnimationMixer( gltf.scene );
