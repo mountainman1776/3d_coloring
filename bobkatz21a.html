@@ -266,7 +266,9 @@ function pickedColor(elm) {
     if(elm.name=="Background") {
         scene.background = new THREE.Color(elm.value);
     }else if(elm.name=="Floor") {
-        scene.background = new THREE.Color(elm.value);
+        Floor
+        // scene.background = new THREE.Color(elm.value);
+        updateElementColor("Floor",elm.value)
     } else {
 
         updateElementColor(elm.name,elm.value)
