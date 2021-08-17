@@ -266,7 +266,7 @@ function pickedColor(elm) {
     if(elm.name=="Background") {
         scene.background = new THREE.Color(elm.value);
     }else if(elm.name=="Floor") {
-        Floor
+        // Floor
         // scene.background = new THREE.Color(elm.value);
         updateElementColor("Floor",elm.value)
     } else {
@@ -401,14 +401,14 @@ function init() {
     // scene.fog = new THREE.Fog(BACKGROUND_COLOR, 20, 100);
 
     //scene floor
-    var floorMaterial = new THREE.MeshBasicMaterial( { color: '#d9d9d9', side: THREE.DoubleSide } );
-    var floorGeometry = new THREE.PlaneGeometry(400, 400, 1, 1);
-    let floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    // floor.position.y = -0.5;
-    floor.position.y = -100;
-    floor.rotation.x = Math.PI / 2;
-    floor.name = "Floor";
-    scene.add(floor);
+    // var floorMaterial = new THREE.MeshBasicMaterial( { color: '#d9d9d9', side: THREE.DoubleSide } );
+    // var floorGeometry = new THREE.PlaneGeometry(400, 400, 1, 1);
+    // let floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    // // floor.position.y = -0.5;
+    // floor.position.y = -100;
+    // floor.rotation.x = Math.PI / 2;
+    // floor.name = "Floor";
+    // scene.add(floor);
 
     // camera
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -453,7 +453,7 @@ function init() {
     
 let model;
 let loader = new GLTFLoader();
-let modelName = "bobkatzbeta1.8.1 v3_001.gltf";
+let modelName = "bobkatzbeta1.8.1 v3_002.gltf";
 
 loader.setDRACOLoader( new DRACOLoader() );
 
